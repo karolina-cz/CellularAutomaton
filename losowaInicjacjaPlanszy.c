@@ -16,27 +16,6 @@ plansza_t inicjacjaLosowa(int wiersze, int kolumny) {
 			a.tablica[i*a.kolumny+j] = rand() % 2;
 		}
 	}
+	return a;
 }
 
-void wyslwietlPansze(plansza_t plansza) {
-
-	for (int i = 0; i < a.wiersze; i++) {
-		for (int j = 0; j < a.kolumny; j++) {
-			char b = 254, c = 255;
-			if (a.tablica[i*a.kolumny + j] == 1)
-				printf("%c ", b);
-			else if (a.tablica[i*a.kolumny + j] == 0)
-				printf("%c ", c);
-		}
-		printf("\n");
-	}
-
-	for (int i = 0; i < a.wiersze; i++) {
-		for (int j = 0; j < a.kolumny; j++)
-			printf("%d ", a.tablica[i*a.kolumny + j]);
-		printf("\n");
-	}
-
-	int koniec = 0;
-	scanf_s("%d", koniec);
-}

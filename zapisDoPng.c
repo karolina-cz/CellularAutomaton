@@ -17,7 +17,7 @@ png_infop info_ptr;
 int number_of_passes;
 png_bytep * row_pointers;
 
-int zapisDoPng(plansza_t *p, char* nazwa)
+int doPng(plansza_t *p, char* nazwa)
 {
     char* file_name=nazwa;
     /*  process_file*/

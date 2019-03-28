@@ -84,7 +84,7 @@ void generator(plansza poprzednia)
     {
         for(int j=0; j<lk; j++)
         {
-            printf("%d", poprzednia.tablica[i*lw+j]);
+            printf("%d", poprzednia.tablica[i*lk+j]);
         }
         printf("\n");
     }
@@ -96,7 +96,7 @@ void generator(plansza poprzednia)
     {
         for(int j=0; j<lk; j++)
         {
-            printf("%d", nowa.tablica[i*lw+j]);
+            printf("%d", nowa.tablica[i*lk+j]);
         }
         printf("\n");
     }

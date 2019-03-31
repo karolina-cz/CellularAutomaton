@@ -1,6 +1,6 @@
 /*zeby ten modul dzialal prawidlowo niezbedne jest umieszczenie deklaracji
 fukncji zapisujacej do txt i png w module z main, w dodatku przy zapisie do png potrzebne
-jest zainstalownie dodatkowej biblioteka libpng */
+jest zainstalownie dodatkowej biblioteki libpng */
 
 #include <stdio.h>
 #include <stdlib.h>

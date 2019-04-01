@@ -4,7 +4,7 @@
 #include <string.h>
 #include <stdarg.h>
 #include "Plansza_t.h"
-#include <png.h>
+#include <libpng.h>
 
 int x, y;
 

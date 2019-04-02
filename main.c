@@ -10,7 +10,6 @@ int main(int argc, char** argv) {
 	plansza_t planszaGry = inicjacjaLosowa( f.wiersze, f.kolumny);
 
 	generator(planszaGry, f, doPlikuTxt,doPng);
-	wyslwietlPlansze(planszaGry);
 
 	return 0;
 }

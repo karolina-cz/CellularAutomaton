@@ -15,6 +15,7 @@ typedef struct flagi_t {
 	char* wyjsciowyT;
 	char* wyjsciowyG;
 	int formatZapisu;
+	int pomoc;
 }flagi_t;
 
 #endif

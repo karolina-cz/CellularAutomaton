@@ -9,7 +9,7 @@ int main(int argc, char** argv) {
 	flagi_t f = zapiszFlagi(argc, argv);
 	plansza_t planszaGry = inicjacjaLosowa( f.wiersze, f.kolumny);
 
-	generator(planszaGry, f, zapisDoTxt(planszaGry, f.wyjsciowyT), zapisDoPng(&planszaGry, f.wyjsciowyG));
+	generator(planszaGry, f, zapisDoTxt, zapisDoPng);
 	wyslwietlPlansze(planszaGry);
 
 	return 0;

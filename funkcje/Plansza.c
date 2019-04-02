@@ -21,5 +21,5 @@ void wyslwietlPlansze(plansza_t plansza) {
 	}
 
 	int koniec = 0;
-	scanf_s("%d", koniec);
+	scanf("%d", &koniec);
 }

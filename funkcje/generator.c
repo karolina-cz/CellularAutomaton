@@ -1,6 +1,6 @@
 /*zeby ten modul dzialal prawidlowo niezbedne jest umieszczenie deklaracji
 fukncji zapisujacej do txt i png w module z main, w dodatku przy zapisie do png potrzebne
-jest zainstalownie dodatkowej biblioteki libpng */
+jest zainstalownie dodatkowej biblioteka libpng */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -8,7 +8,7 @@ jest zainstalownie dodatkowej biblioteki libpng */
 #include "flagi_t.h"
 #include<string.h>
 
-void zapisz(flagi_t, plansza_t,int,void(*doPlikuTxt)(char*,plansza_t),void(*doPng)(plansza_t*, char*));
+void zapisz(flagi_t, plansza_t,int,void(*doPlikuTxt)(plansza_t,char*),void(*doPng)(plansza_t*, char*));
 
 void wyswietl(plansza_t);
 
@@ -49,125 +49,59 @@ void generator(plansza_t poprzednia, flagi_t cechy, void(*doPlikuTxt)(char*,plan
             if(i-lk>=0) //nie wyszlo poza zakres planszy u gory
                 sasiad_gora=poprzednia.tablica[i-lk];
             else //wyszlo poza zakres planszy u gory
-            {
-                switch(laczenie)
-                {
-                case 0:
-                    sasiad_gora=0; //brak laczenia
-                case 1:
-                    sasiad_gora=poprzednia.tablica[(lw-1)*lk + i];//laczenie calkowite
-                }
-            }
+
+                sasiad_gora=0;
+
 
             if(i+lk < lk*lw ) //nie wyszlo poza zakres planszy na dole
                 sasiad_dol= poprzednia.tablica[i+lk];
             else //wyszlo poza zakres planszy na dole
-                 {
-                switch(laczenie)
-                {
-                case 0:
-                    sasiad_dol=0;  //brak laczenia
-                case 1:
-                    sasiad_dol=poprzednia.tablica[i-(lw-1)*lk]; //laczenie calkowite
-                }
-            }
+
+                sasiad_dol=0;
 
 
 
             if((i+1<lk*lw) && ((i+1)%lk != 0) ) //nie wyszlo poza zakres planszy na prawo
                 sasiad_prawo=poprzednia.tablica[i+1];
             else //wyszlo poza zakres planszy na prawo
-                  {
-                switch(laczenie)
-                {
-                case 0:
-                    sasiad_prawo=0;  //brak laczenia
-                case 1:
-                    sasiad_prawo=poprzednia.tablica[i-(lk-1)]; //laczenie calkowite
-                }
-            }
 
+                sasiad_prawo=0;
 
 
             if(i-1>=0 && (i%lk != 0) ) //nie wyszlo poza zakres planszy na lewo
                 sasiad_lewo=poprzednia.tablica[i-1];
             else //wyszlo poza zakres planszy na lewo
-                 {
-                switch(laczenie)
-                {
-                case 0:
-                    sasiad_lewo=0;  //brak laczenia
-                case 1:
-                    sasiad_lewo=poprzednia.tablica[i+(lk-1)]; //laczenie calkowite
-                }
-            }
+
+                sasiad_lewo=0;
+
 
 
 
             if(i-lk-1 >= 0 && ((i-lk)%lk != 0)) //nie wyszlo poza zakres planszy u gory na lewo
                 sasiad_gl=poprzednia.tablica[i-lk-1];
             else //wyszlo poza zakres planszy u gory na lewo
-                {
-                switch(laczenie)
-                {
-                case 0:
-                    sasiad_gl=0;  //brak laczenia
-                case 1: //laczenie calkowite
-                    //DOKONCZYC//
-
-                }
-            }
-
+                sasiad_gl=0;
 
 
             if(i-lk+1 >= 0 &&((i-lk+1)%lk != 0))  //nie wyszlo poza zakres planszy u gory na prawo
                 sasiad_gp=poprzednia.tablica[i-lk+1];
             else //wyszlo poza zakres planszy u gory na prawo
-                {
-                switch(laczenie)
-                {
-                case 0:
-                    sasiad_gp=0;  //brak laczenia
-                case 1: //laczenie calkowite
-                   //DOKONCZYC//
 
-                }
-            }
+                sasiad_gp=0;
+
 
 
             if((i+lk-1 < lk*lw) && ((i+lk)%lk != 0)) //nie wyszlo poza zakres planszy na dole po lewo
                 sasiad_dl=poprzednia.tablica[i+lk-1];
             else  //wyszlo poza zakres planszy na dole po lewo
-                {
-                switch(laczenie)
-                {
-                case 0:
-                    sasiad_dl=0;  //brak laczenia
-                case 1: //laczenie calkowite
-                    //DOKONCZYC//
-
-
-                }
-            }
+                sasiad_dl=0;
 
 
 
             if(i+lk+1 < lk*lw && ((i+lk+1)%lk != 0)) ////nie wyszlo poza zakres planszy na dole po prawo
                 sasiad_dp=poprzednia.tablica[i+lk+1];
             else //wyszlo poza zakres planszy na dole po prawo
-
-                 {
-                switch(laczenie)
-                {
-                case 0:
-                    sasiad_dp=0;  //brak laczenia
-                case 1: //laczenie calkowite
-                    //DOKONCZYC//
-
-
-
-                }
-            }
+                sasiad_dp=0;
 
 
 

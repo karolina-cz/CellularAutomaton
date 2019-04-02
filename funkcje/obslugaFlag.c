@@ -1,8 +1,4 @@
-#include <ctype.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <getopt.h>
+#include "flagi_t.h"
 
 flagi_t zapiszFlagi(int argc, char ** argv) {
 
@@ -16,6 +12,7 @@ flagi_t zapiszFlagi(int argc, char ** argv) {
 	flagi.wyjsciowyT = "gen";
 	flagi.wyjsciowyG = "gen";
 	flagi.formatZapisu = 0;
+	flagi.pomoc = 0;
 
 	int c;
 	char arg[7] = { 'h', 'w', 'k', 'p', 't', 'g', 'z' };
@@ -25,7 +22,7 @@ flagi_t zapiszFlagi(int argc, char ** argv) {
 		exit(EXIT_FAILURE);
 	}
 
-	while ((c != -1)) {
+	while (1) {
 		int indeks = 0;
 		static struct option opcje[] = {
 				{"pomoc", no_argument, 0,  'h' },
@@ -41,6 +38,9 @@ flagi_t zapiszFlagi(int argc, char ** argv) {
 
 		switch (c)
 		{
+		case 'h':
+			flagi.pomoc = 1;
+			break;
 		case 'w':
 			flagi.wiersze = atoi(optarg);
 			break;
@@ -64,7 +64,7 @@ flagi_t zapiszFlagi(int argc, char ** argv) {
 			break;
 		case '?':
 
-			for (int j = 0; j < 6; j++) {
+			for (int j = 0; j < 7; j++) {
 				if (optopt == arg[j])
 					fprintf(stderr, "Opcja -%c wymaga argumentu.\n", optopt);
 				else if (isprint(optopt))

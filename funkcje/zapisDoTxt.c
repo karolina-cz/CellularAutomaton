@@ -1,6 +1,6 @@
 #include "zapisDoTxt.h"
 
-void doPlikuTxt(char * nazwa, plansza_t plansza){
+void doPlikuTxt(plansza_t plansza, char* nazwa){
     FILE * plik=fopen(nazwa, "w");
     int w=plansza.wiersze;
     int k=plansza.kolumny;

@@ -4,7 +4,7 @@
 #include <string.h>
 #include <stdarg.h>
 #include "Plansza_t.h"
-#include <libpng.h>
+#include <png.h>
 
 int x, y;
 
@@ -17,13 +17,13 @@ png_infop info_ptr;
 int number_of_passes;
 png_bytep * row_pointers;
 
-int doPng(plansza_t *p, char* nazwa)
+void doPng(plansza_t *p, char* nazwa)
 {
     char* file_name=nazwa;
     /*  process_file*/
     width = p->kolumny;
     height = p->wiersze;
-    int* tab=p->tablica;
+    int* tab= p->tablica;
     bit_depth = 8;
     color_type = PNG_COLOR_TYPE_GRAY;
 
@@ -38,8 +38,8 @@ int doPng(plansza_t *p, char* nazwa)
         for (x=0; x<width; x++)
         {
             row[x] = tab[y*width+x]>0 ? 0 : 255;
-            printf("Pixel at position [ %d - %d ] has RGBA values: %d\n",
-                   x, y, row[x]);
+            //printf("Pixel at position [ %d - %d ] has RGBA values: %d\n",
+                  // x, y, row[x]);
         }
     }
 
@@ -91,5 +91,4 @@ int doPng(plansza_t *p, char* nazwa)
     fclose(fp);
 
 
-    return 0;
 }

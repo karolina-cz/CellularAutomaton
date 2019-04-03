@@ -1,17 +1,16 @@
 #include <stdio.h>
 #include "Plansza_t.h"
-#include "Plansza.h"
 #include "losowaInicjacjaPlanszy.h"
 #include "inicjacjaPlanszyZPliku.h"
-#pragma warning(disable : 4996)
+#include "flagi_t.h"
 
-int main() {
+int main(int argc, char** argv) {
 
-	plansza_t planszaGry = inicjacjaLosowa( 10, 10 );
+	flagi_t f = zapiszFlagi(argc, argv);
+	plansza_t planszaGry = inicjacjaLosowa( f.wiersze, f.kolumny);
 
-	wyslwietlPlansze( planszaGry);
+	generator(planszaGry, f, zapisDoTxt(planszaGry, f.wyjsciowyT), zapisDoPng(&planszaGry, f.wyjsciowyG));
+	wyslwietlPlansze(planszaGry);
 
-
-	getc(stdin);
 	return 0;
 }

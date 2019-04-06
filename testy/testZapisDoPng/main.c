@@ -22,7 +22,6 @@ int main()
         printf("\n");
     }
     doPng(&plansza,"test_grafiki.png");
-
-
+        free(plansza.tablica);
         return 0;
 }

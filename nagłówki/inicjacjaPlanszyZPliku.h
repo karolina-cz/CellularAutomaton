@@ -6,9 +6,9 @@
 #include "Plansza_t.h"
 #include "losowaInicjacjaPlanszy.h"
 
-plansza_t wypelnij(FILE* cos, plansza_t *x);
 plansza_t wczytajZPliku(const char* plik);
-void policz(FILE* in, plansza_t* x);
-int sprawdz(FILE* in, plansza_t* x);
+void wypelnij(const char* plik, plansza_t *x);
+void policz(const char* plik, plansza_t* x);
+int sprawdz(const char* plik, plansza_t* x);
 
 #endif 

@@ -123,6 +123,7 @@ void generator(plansza_t poprzednia, flagi_t cechy, void(*doPlikuTxt)(char*,plan
         poprzednia=nowa;
 
     }
+    free(nowa.tablica);
 }
 
 
@@ -158,7 +159,8 @@ void zapisz(flagi_t cechy, plansza_t nowa,int j,void(*doPlikuTxt)(char*,plansza_
         strncpy(nazwaG,cechy.wyjsciowyG,strlen(cechy.wyjsciowyG)+1);
 
     }
-
+free(nazwaT);
+    free(nazwaG);
 }
 
 void wyswietlPlansze(plansza_t p)

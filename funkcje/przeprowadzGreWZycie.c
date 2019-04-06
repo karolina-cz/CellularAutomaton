@@ -4,17 +4,16 @@ jest zainstalownie dodatkowej biblioteka libpng */
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "Plansza_t.h"
+#include "plansza_t.h"
 #include "flagi_t.h"
 #include<string.h>
 
-void zapisz(flagi_t, plansza_t,int,void(*doPlikuTxt)(char*,plansza_t),void(*doPng)(plansza_t*, char*));
+void zapisz(flagi_t, plansza_t,int,void(*doTxt)(plansza_t,char*),void(*doPng)(plansza_t*, char*));
 
-void wyswietl(plansza_t);
 
-void generator(plansza_t poprzednia, flagi_t cechy, void(*doPlikuTxt)(char*,plansza_t),void(*doPng)(plansza_t*, char*))
+void przeprowadzGreWZycie(plansza_t poprzednia, flagi_t cechy, void(*doTxt)(plansza_t,char*),void(*doPng)(plansza_t*, char*))
 {
-    wyswietl(poprzednia);
+    wyswietlPlansze(poprzednia);
     int ileGen=cechy.ileGeneracji;
     if(ileGen>100) //sprawdzam czy liczba generacji nie przekroczyla dozwolonej wartosci, jezeli tak, zmieniam na najwieksza mozliwa
     {
@@ -29,7 +28,6 @@ void generator(plansza_t poprzednia, flagi_t cechy, void(*doPlikuTxt)(char*,plan
     nowa.wiersze=lw;
     nowa.kolumny=lk;
 
-    //somsiady
     int sasiad_gora;
     int sasiad_dol;
     int sasiad_prawo;
@@ -119,18 +117,20 @@ void generator(plansza_t poprzednia, flagi_t cechy, void(*doPlikuTxt)(char*,plan
 
         }
 
-        wyswietl(nowa);
-        zapisz(cechy,nowa,j,doPlikuTxt,doPng);
+        wyswietlPlansze(nowa);
+       if(doPng!=NULL && doTxt!=NULL)
+            zapisz(cechy,nowa,j,doTxt,doPng);
         poprzednia=nowa;
 
     }
+    free(nowa.tablica);
 }
 
 
 
 
 
-void zapisz(flagi_t cechy, plansza_t nowa,int j,void(*doPlikuTxt)(char*,plansza_t),void(*doPng)(plansza_t*, char*))
+void zapisz(flagi_t cechy, plansza_t nowa,int j,void(*doTxt)(plansza_t,char*),void(*doPng)(plansza_t*, char*))
 {
     char numerN[3];
     sprintf(numerN, "%d",j);
@@ -144,25 +144,21 @@ void zapisz(flagi_t cechy, plansza_t nowa,int j,void(*doPlikuTxt)(char*,plansza_
     {
         strncat (nazwaT, numerN, sizeof(char)*3);
         strncat (nazwaT, txt, sizeof(char)*4);
-        doPlikuTxt(nazwaT,nowa);
+        doTxt(nowa,nazwaT);
         strncpy(nazwaT,cechy.wyjsciowyT,strlen(cechy.wyjsciowyT)+1);
-
-
     }
     if(cechy.formatZapisu==1 || cechy.formatZapisu==2)
     {
         strncat (nazwaG, numerN, sizeof(char)*3);
-
         strncat (nazwaG, png, sizeof(char)*4);
-
         doPng(&nowa,nazwaG);
         strncpy(nazwaG,cechy.wyjsciowyG,strlen(cechy.wyjsciowyG)+1);
-
     }
-
+    free(nazwaT);
+    free(nazwaG);
 }
 
-void wyswietl(plansza_t p)
+void wyswietlPlansze(plansza_t p)
 {
     for(int i=0; i<p.wiersze; i++)
     {

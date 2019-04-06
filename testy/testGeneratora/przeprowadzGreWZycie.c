@@ -4,7 +4,7 @@ jest zainstalownie dodatkowej biblioteka libpng */
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "Plansza_t.h"
+#include "plansza_t.h"
 #include "flagi_t.h"
 #include<string.h>
 

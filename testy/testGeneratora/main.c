@@ -19,7 +19,7 @@ int main()
 	flagi.wyjsciowyT= "test";
 	flagi.wyjsciowyG= "grafika";
 	flagi.formatZapisu=0; //zapis do txt i tak nie nastapi bo to test tylko generatora
-	generator(plansza,flagi);
+	generator(plansza,flagi,NULL,NULL);
 
 
     return 0;

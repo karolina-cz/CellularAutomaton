@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "Plansza_t.h"
+#include "plansza_t.h"
 #include<time.h>
 void doTxt(plansza_t,char*);
 int main()

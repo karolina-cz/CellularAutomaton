@@ -118,7 +118,7 @@ void generator(plansza_t poprzednia, flagi_t cechy, void(*doPlikuTxt)(char*,plan
         }
 
         wyswietlPlansze(nowa);
-        if(doPng==NULL && doPlikuTxt==NULL)
+        if(doPng!=NULL && doPlikuTxt!=NULL)
             zapisz(cechy,nowa,j,doPlikuTxt,doPng);
         poprzednia=nowa;
 

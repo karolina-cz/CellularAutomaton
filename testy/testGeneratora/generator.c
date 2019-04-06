@@ -8,10 +8,10 @@ jest zainstalownie dodatkowej biblioteka libpng */
 #include "flagi_t.h"
 #include<string.h>
 
-void zapisz(flagi_t, plansza_t,int,void(*doPlikuTxt)(char*,plansza_t),void(*doPng)(plansza_t*, char*));
+void zapisz(flagi_t, plansza_t,int,void(*doTxt)(plansza_t,char*),void(*doPng)(plansza_t*, char*));
 
 
-void generator(plansza_t poprzednia, flagi_t cechy, void(*doPlikuTxt)(char*,plansza_t),void(*doPng)(plansza_t*, char*))
+void przeprowadzGreWZycie(plansza_t poprzednia, flagi_t cechy, void(*doTxt)(plansza_t,char*),void(*doPng)(plansza_t*, char*))
 {
     wyswietlPlansze(poprzednia);
     int ileGen=cechy.ileGeneracji;
@@ -118,8 +118,8 @@ void generator(plansza_t poprzednia, flagi_t cechy, void(*doPlikuTxt)(char*,plan
         }
 
         wyswietlPlansze(nowa);
-        if(doPng!=NULL && doPlikuTxt!=NULL)
-            zapisz(cechy,nowa,j,doPlikuTxt,doPng);
+       if(doPng!=NULL && doTxt!=NULL)
+            zapisz(cechy,nowa,j,doTxt,doPng);
         poprzednia=nowa;
 
     }
@@ -130,7 +130,7 @@ void generator(plansza_t poprzednia, flagi_t cechy, void(*doPlikuTxt)(char*,plan
 
 
 
-void zapisz(flagi_t cechy, plansza_t nowa,int j,void(*doPlikuTxt)(char*,plansza_t),void(*doPng)(plansza_t*, char*))
+void zapisz(flagi_t cechy, plansza_t nowa,int j,void(*doTxt)(plansza_t,char*),void(*doPng)(plansza_t*, char*))
 {
     char numerN[3];
     sprintf(numerN, "%d",j);
@@ -144,22 +144,17 @@ void zapisz(flagi_t cechy, plansza_t nowa,int j,void(*doPlikuTxt)(char*,plansza_
     {
         strncat (nazwaT, numerN, sizeof(char)*3);
         strncat (nazwaT, txt, sizeof(char)*4);
-        doPlikuTxt(nazwaT,nowa);
+        doTxt(nowa,nazwaT);
         strncpy(nazwaT,cechy.wyjsciowyT,strlen(cechy.wyjsciowyT)+1);
-
-
     }
     if(cechy.formatZapisu==1 || cechy.formatZapisu==2)
     {
         strncat (nazwaG, numerN, sizeof(char)*3);
-
         strncat (nazwaG, png, sizeof(char)*4);
-
         doPng(&nowa,nazwaG);
         strncpy(nazwaG,cechy.wyjsciowyG,strlen(cechy.wyjsciowyG)+1);
-
     }
-free(nazwaT);
+    free(nazwaT);
     free(nazwaG);
 }
 

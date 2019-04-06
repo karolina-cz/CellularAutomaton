@@ -1,6 +1,6 @@
 #include<stdio.h>
-#include "Plansza_t.h"
-void doPlikuTxt(char * nazwa, plansza_t plansza){
+#include "plansza_t.h"
+void doTxt( plansza_t plansza, char * nazwa){
     FILE * plik=fopen(nazwa, "w");
     int w=plansza.wiersze;
     int k=plansza.kolumny;
@@ -9,8 +9,6 @@ void doPlikuTxt(char * nazwa, plansza_t plansza){
             fprintf(plik,"%d ",plansza.tablica[i*k+j]);
             }
             fprintf(plik,"\n");
-
     }
     fclose (plik);
     }
-

@@ -7,5 +7,5 @@ typedef struct plansza_t {
 	int kolumny;
 }plansza_t;
 
-void wyslwietlPlansze(plansza_t plansza);
+void wyswietlPlansze(plansza_t plansza);
 #endif

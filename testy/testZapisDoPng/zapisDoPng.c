@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdarg.h>
-#include "Plansza_t.h"
+#include "plansza_t.h"
 #include <png.h>
 
 int x, y;

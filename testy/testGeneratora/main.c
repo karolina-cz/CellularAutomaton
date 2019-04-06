@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include"Plansza_t.h"
 #include "flagi_t.h"
-
+void generator(plansza_t, flagi_t , void(*doPlikuTxt)(char*,plansza_t),void(*doPng)(plansza_t*, char*));
 int main()
 {
     plansza_t plansza;

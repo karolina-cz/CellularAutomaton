@@ -87,7 +87,8 @@ void doPng(plansza_t *p, char* nazwa)
     for (y=0; y<height; y++)
         free(row_pointers[y]);
     free(row_pointers);
-
+     png_destroy_write_struct(& png_ptr,& info_ptr);
+   png_destroy_info_struct(png_ptr,&info_ptr);
     fclose(fp);
 
 

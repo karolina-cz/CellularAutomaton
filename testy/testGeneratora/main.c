@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include"Plansza_t.h"
+#include"plansza_t.h"
 #include "flagi_t.h"
 void przeprowadzGreWZycie(plansza_t, flagi_t, void(*doTxt)(plansza_t,char*),void(*doPng)(plansza_t*, char*));
 int main()

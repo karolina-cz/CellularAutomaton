@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include"Plansza_t.h"
 #include "flagi_t.h"
-void generator(plansza_t, flagi_t, void(*doPlikuTxt)(char*,plansza_t),void(*doPng)(plansza_t*, char*));
+void przeprowadzGreWZycie(plansza_t, flagi_t, void(*doTxt)(plansza_t,char*),void(*doPng)(plansza_t*, char*));
 int main()
 {
     plansza_t plansza;
@@ -17,7 +17,7 @@ int main()
         flagi.wyjsciowyT= "test";
         flagi.wyjsciowyG= "grafika";
         flagi.formatZapisu=0; //zapis do txt i tak nie nastapi bo to test tylko generatora
-        generator(plansza,flagi,NULL,NULL);
+        przeprowadzGreWZycie(plansza,flagi,NULL,NULL);
         free(plansza.tablica);
     return 0;
 }

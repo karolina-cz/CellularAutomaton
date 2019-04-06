@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "Plansza_t.h"
 #include<time.h>
+void doTxt(plansza_t,char*);
 int main()
 {
     //tworzenie losowej planszy
@@ -21,7 +22,7 @@ int main()
         }
         printf("\n");
     }
-    doPlikuTxt("test.txt",plansza);
-    free(plansza.tablica);
+    doTxt(plansza,"test.txt");
+        free(plansza.tablica);
     return 0;
 }

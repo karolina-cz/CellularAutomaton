@@ -63,7 +63,6 @@ void policz(const char* plik, plansza_t* x){
 
 int sprawdz(const char* plik, plansza_t* x)
 {	
-	/*
 	FILE* in = fopen(plik, "r");
     int k = x->kolumny, w = 0, k2;
 	char d;
@@ -83,6 +82,6 @@ int sprawdz(const char* plik, plansza_t* x)
         w++;
     }
 	fclose(in);
-	*/
+	
     return 0;
 }

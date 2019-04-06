@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include<time.h>
-#include "Plansza_t.h"
+#include "plansza_t.h"
 void doPng(plansza_t *, char*);
 int main()
 {   //tworzenie losowej planszy

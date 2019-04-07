@@ -1,6 +1,6 @@
 #include "zapisDoTxt.h"
 
-void doPlikuTxt(plansza_t plansza, char* nazwa){
+void doTxt( plansza_t plansza, char * nazwa){
     FILE * plik=fopen(nazwa, "w");
     int w=plansza.wiersze;
     int k=plansza.kolumny;
@@ -9,8 +9,6 @@ void doPlikuTxt(plansza_t plansza, char* nazwa){
             fprintf(plik,"%d ",plansza.tablica[i*k+j]);
             }
             fprintf(plik,"\n");
-
     }
     fclose (plik);
     }
-

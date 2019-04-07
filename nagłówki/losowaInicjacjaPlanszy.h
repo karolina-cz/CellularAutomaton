@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include<time.h>
-#include "Plansza_t.h"
+#include "plansza_t.h"
 
 plansza_t inicjacjaLosowa(int wiersze, int kolumny);
 

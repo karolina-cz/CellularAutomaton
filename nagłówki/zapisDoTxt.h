@@ -1,9 +1,9 @@
-#ifndef ZAPIS_DO_PNG
-#define ZAPIS_DO_PNG
+#ifndef ZAPIS_DO_png
+#define ZAPIS_DO_png
 
 #include<stdio.h>
-#include "Plansza_t.h"
+#include "plansza_t.h"
 
-void doPlikuTxt(plansza_t plansza, char* nazwa);
+void doTxt(plansza_t plansza, char* nazwa);
 
 #endif

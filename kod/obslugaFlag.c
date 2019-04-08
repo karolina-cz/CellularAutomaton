@@ -1,8 +1,7 @@
 #include "flagi_t.h"
 
-void wyczysc(flagi_t* c) {
-	free(c->wyjsciowyT);
-	free(c->wyjsciowyG);
+void zwalnianiePamieci(flagi_t* c) {
+	free(c->wyjsciowy);
 	free(c);
 }
 
@@ -11,25 +10,22 @@ flagi_t* zapiszFlagi(int argc, char** argv) {
 	int c;
 	char ch;
 	int read;
-	char* katalogDomyslny = "wyniki";
+	char* defualtOutput = "wyniki";
 
 
 	flagi_t* flagi = malloc(sizeof(*flagi));
 
 	flagi->pomoc = 0;
-	flagi->plikWejsciowy = "#";
-	flagi->wyjsciowyT = malloc(strlen(katalogDomyslny) + 1);
-	flagi->wyjsciowyG = malloc(strlen(katalogDomyslny) + 1);
-	strcpy(flagi->wyjsciowyT, katalogDomyslny);
-	strcpy(flagi->wyjsciowyG, katalogDomyslny);
-	flagi->formatZapisu = TXT;
+	flagi->plikWejsciowy = "";
+	flagi->wyjsciowy = malloc(strlen(defualtOutput) + 1);
+	strcpy(flagi->wyjsciowy, defualtOutput);
+	flagi->formatZapisu = PNG;
 	flagi->ileGeneracji = 10;
 	flagi->kolumny = 10;
 	flagi->wiersze = 10;
-	flagi->wyswietl = 0;
 
 	if (argc == 1) {
-		printf("Aby wyswietlic pomoc, wywolaj program z flaga -h lub --pomoc \n");
+		printf("1. Aby wyswietlic pomoc, wywolaj program z flaga -h lub --pomoc \n");
 		exit(EXIT_FAILURE);
 	}
 	while (1) {
@@ -37,16 +33,14 @@ flagi_t* zapiszFlagi(int argc, char** argv) {
 		static struct option long_options[] = {
 				{"pomoc", no_argument, 0,  'h' },
 				{"plikWejsciowy",  required_argument, 0, 'p' },
-				{"wyjsciowyT",  required_argument, 0, 't' },
-				{"wyjsciowyG",  required_argument, 0, 'g' },
-				{"wyswietl",  no_argument, 0, 'w' },
+				{"wyjsciowy",  required_argument, 0, 'z' },
 				{"formatZapisu",  required_argument, 0, 'f' },
-				{"generacje",  required_argument, 0, 'n' },
+				{"ileGeneracji",  required_argument, 0, 'g' },
 				{"rozmiar",  required_argument, 0, 'r' }
 
 		};
 
-		c = getopt_long(argc, argv, "hp:t:g:w:f:n:wk:", long_options, &option_index);
+		c = getopt_long(argc, argv, "hp:z:f:g:w:k: ", long_options, &option_index);
 
 		if (c == -1)
 			break;
@@ -57,67 +51,40 @@ flagi_t* zapiszFlagi(int argc, char** argv) {
 
 		case 'h':
 			flagi->pomoc = 1;
-			printf("Aby podac plik wejsciowy do wygenerowania planszy:\n--plikWejsciowy [nazwa_pliku]\n");
-			printf("Aby podac plik wejsciowy do wygenerowania planszy:\n--plikWejsciowy [nazwa_pliku]\n");
-			printf("Aby podac plik wejsciowy do wygenerowania planszy:\n--plikWejsciowy [nazwa_pliku]\n");
-			printf("Aby podac plik wejsciowy do wygenerowania planszy:\n--plikWejsciowy [nazwa_pliku]\n");
 			break;
 
 		case 'p':
 			flagi->plikWejsciowy = optarg;
 			break;
 
-		case 't':
+		case 'z':
 			if (optarg[strlen(optarg) - 1] != '/') {
-				if ((flagi->wyjsciowyT = realloc(flagi->wyjsciowyT, strlen(optarg) + 2)) == NULL) {
+				if ((flagi->wyjsciowy = realloc(flagi->wyjsciowy, strlen(optarg) + 2)) == NULL) {
 					printf("Blad");
 					exit(EXIT_FAILURE);
 				}
-				strcpy(flagi->wyjsciowyT, optarg);
-				strcat(flagi->wyjsciowyT, "/");
+				strcpy(flagi->wyjsciowy, optarg);
+				strcat(flagi->wyjsciowy, "/");
 			}
 			else {
-				if ((flagi->wyjsciowyT = realloc(flagi->wyjsciowyT, strlen(optarg) + 1)) == NULL) {
+				if ((flagi->wyjsciowy = realloc(flagi->wyjsciowy, strlen(optarg) + 1)) == NULL) {
 					printf("Blad");
 					exit(EXIT_FAILURE);
 				}
-				strcpy(flagi->wyjsciowyT, optarg);
+				strcpy(flagi->wyjsciowy, optarg);
 			}
-			break;
-
-		case 'g':
-			if (optarg[strlen(optarg) - 1] != '/') {
-				if ((flagi->wyjsciowyG = realloc(flagi->wyjsciowyG, strlen(optarg) + 2)) == NULL) {
-					printf("Blad");
-					exit(EXIT_FAILURE);
-				}
-				strcpy(flagi->wyjsciowyG, optarg);
-				strcat(flagi->wyjsciowyG, "/");
-			}
-			else {
-				if ((flagi->wyjsciowyG = realloc(flagi->wyjsciowyG, strlen(optarg) + 1)) == NULL) {
-					printf("Blad");
-					exit(EXIT_FAILURE);
-				}
-				strcpy(flagi->wyjsciowyG, optarg);
-			}
-			break;
-
-		case 'w':
-			flagi->wyswietl = 1;
 			break;
 
 		case 'f':
 			if (strcmp(optarg, "txt") == 0) flagi->formatZapisu = TXT;
 			else if (strcmp(optarg, "png") == 0) flagi->formatZapisu = PNG;
-			else if (strcmp(optarg, "oba") == 0) flagi->formatZapisu = OBA;
 			else {
-				printf("\nNierozpoznany typ pliku wyjsciowego, wybrany domyslny - .txt\n");
+				printf("\nNierozpoznany typ pliku wyjœciowego, wybrany domyœlny - .png\n");
 			}
 
 			break;
 
-		case 'n':
+		case 'g':
 			flagi->ileGeneracji = atoi(optarg);
 			if (flagi->ileGeneracji == 0)
 			{
@@ -136,27 +103,25 @@ flagi_t* zapiszFlagi(int argc, char** argv) {
 			}
 			break;
 		default:
-			printf("Aby wyswietlic pomoc wywolaj program z flaga -h lub --pomoc\n");
+			printf("2. Aby wyswietlic pomoc wywolaj program z flaga -h lub --pomoc\n");
 			exit(1);
 		}
 	}
 
 	if (optind < argc) {
-		printf("Aby wyswietlic pomoc wywolaj program z flaga -h lub --pomoc \n");
+		printf("3. Aby wyswietlic pomoc wywolaj program z flaga -h lub --pomoc \n");
 		exit(EXIT_FAILURE);
 	}
-	//mkdir(flagi->wyjsciowy, 0777);
+	mkdir(flagi->wyjsciowy, 0777);
 	return flagi;
 }
 
 
 char* przeksztalcFormatZapisu(typ formatZapisu){
 	if (formatZapisu == PNG)
-		return "png";
+		return "PNG";
 	else if (formatZapisu == TXT)
-		return "txt";
-	else if (formatZapisu == OBA)
-		return "oba";
+		return "TXT";
 	else 
 		return "";
 }

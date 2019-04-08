@@ -3,9 +3,9 @@
 
 int main(int argc, char** argv) {
 
-	plansza_t a = wczytajZPliku("test.txt");//argc>1 ? wczytajZPliku(argv[1]): inicjacjaLosowa(10,10);
+	plansza_t a = wczytajZPliku("test.txt");//argc > 1 ? wczytajZPliku(argv[1]): inicjacjaLosowa(10,10);
 
-/*	if (argznak> 1) {
+/*	if (argc > 1) {
 		FILE* in = fopen(argv[1], "r");
 		int n = 0;
 		char c;
@@ -25,6 +25,5 @@ int main(int argc, char** argv) {
 		printf("\n");
 	}
 
-	getc( stdin );
 	return 0;
 }

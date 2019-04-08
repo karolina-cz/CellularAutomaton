@@ -4,20 +4,26 @@
 plansza_t wczytajZPliku(const char* plik){
 
     FILE* in = fopen(plik, "r");
+	if (in == NULL) {
+		printf("Nie udalo sie wczytac pliku. Wygenerowano losowa plansze o rozmiarze 10x10.\n");
+			return inicjacjaLosowa(10, 10);
+	}
 
     plansza_t a;
 
     policz(plik, &a);
-    a.tablica = malloc(sizeof(int) * a.wiersze * a.kolumny);
+	if (a.wiersze < 3 || a.kolumny < 3) {
+		printf("Podano zly rozmiar planszy. Rozmiar planszy to minimum 3x3. Wygenerowano losowa plansze o rozmiarze 10x10.\n");
+		return inicjacjaLosowa(10, 10);
+	}
+	
+	a.tablica = malloc(sizeof(int) * a.wiersze * a.kolumny);
 
     if( sprawdz(plik, &a) == -1 )
         return inicjacjaLosowa(10, 10);
 
 	else if (sprawdz(plik, &a) == 0) {
 
-		/*for (int i = 0; i < a.wiersze*a.kolumny; i++) {
-			a.tablica[i] = getc(in) - '0';
-		}*/
 		wypelnij(plik, &a);
 	}
 	fclose(in);
@@ -61,22 +67,19 @@ void policz(const char* plik, plansza_t* x){
 	fclose(in);
 }
 
-int sprawdz(const char* plik, plansza_t* x)
-{	
+int sprawdz(const char* plik, plansza_t* x){	
 	
 	FILE* in = fopen(plik, "r");
     int k = x->kolumny, w = 0, k2;
 	char d;
-    while ( (d=getc(in)) != EOF)
-    {
+    while ( (d=getc(in)) != EOF){
+
 		k2 = 0;
         while ( (d= getc(in) != '\n') && (getc(in) != EOF))
-        {
             k2++;
-        }
+        
 		if (k2 != k) {
-			//
-			//printf("Liczba wierszy: %d \n", w);
+
 			printf("Liczba znakow w wierszu %d jest nieprawidlowa, wiersz powinien zawieraznak%d znakow, a znaleziono %d \n", w, k, k2);
 			return -1;
 		}

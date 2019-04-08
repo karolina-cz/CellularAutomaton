@@ -17,3 +17,4 @@ plansza_t inicjacjaLosowa(int wiersze, int kolumny) {
 	return a;
 }
 
+

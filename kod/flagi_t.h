@@ -22,10 +22,11 @@ typedef struct {
 	char* wyjsciowyT;
 	char* wyjsciowyG;
 	typ formatZapisu;
+	int wyswietl;
 	int pomoc;
 }flagi_t;
 
-void zwalnianiePamieci(flagi_t* flagi);
+void wyczysc(flagi_t* flagi);
 flagi_t* zapiszFlagi( int argc, char ** argv);
 char* przeksztalcFormatZapisu(typ formatZapisu);
 #endif

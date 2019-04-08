@@ -1,16 +1,19 @@
 #include <stdio.h>
-#include "Plansza_t.h"
 #include "losowaInicjacjaPlanszy.h"
 #include "inicjacjaPlanszyZPliku.h"
+#include "przeprowadzGreWZycie.h"
+#include "zapisDoTxt.h"
+#include "zapisDoPng.h"
 #include "flagi_t.h"
+#include "plansza_t.h"
 
 int main(int argc, char** argv) {
 
-	flagi_t f = zapiszFlagi(argc, argv);
-	plansza_t planszaGry = inicjacjaLosowa( f.wiersze, f.kolumny);
+	flagi_t *f = zapiszFlagi(argc, argv);
+	plansza_t planszaGry = inicjacjaLosowa( f->wiersze, f->kolumny);
 
-	generator(planszaGry, f, zapisDoTxt(planszaGry, f.wyjsciowyT), zapisDoPng(&planszaGry, f.wyjsciowyG));
-	wyslwietlPlansze(planszaGry);
+	przeprowadzGreWZycie(planszaGry, *f, doTxt, doPng);
+	wyswietlPlansze(planszaGry);
 
 	return 0;
 }

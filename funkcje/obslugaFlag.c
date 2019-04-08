@@ -11,17 +11,17 @@ flagi_t* zapiszFlagi(int argc, char** argv) {
 	int c;
 	char ch;
 	int read;
-	char* defualtOutput = "result/";
+	char* domyslnyPlik = "wynik";
 
 
 	flagi_t* flagi = malloc(sizeof(*flagi));
 
 	flagi->pomoc = 0;
 	flagi->plikWejsciowy = "";
-	flagi->wyjsciowyT = malloc(strlen(defualtOutput) + 1);
-	flagi->wyjsciowyG = malloc(strlen(defualtOutput) + 1);
-	strcpy(flagi->wyjsciowyT, defualtOutput);
-	strcpy(flagi->wyjsciowyG, defualtOutput);
+	flagi->wyjsciowyT = malloc(strlen(domyslnyPlik) + 1);
+	flagi->wyjsciowyG = malloc(strlen(domyslnyPlik) + 1);
+	strcpy(flagi->wyjsciowyT, domyslnyPlik);
+	strcpy(flagi->wyjsciowyG, domyslnyPlik);
 	flagi->formatZapisu = txt;
 	flagi->ileGeneracji = 10;
 	flagi->kolumny = 10;
@@ -102,7 +102,7 @@ flagi_t* zapiszFlagi(int argc, char** argv) {
 			else if (strcmp(optarg, "png") == 0) flagi->formatZapisu = png;
 			else if (strcmp(optarg, "oba") == 0) flagi->formatZapisu = oba;
 			else {
-				printf("\nNierozpoznany typ pliku wyjúciowego, wybrany domyúlny - .txt\n");
+				printf("\nNierozpoznany typ pliku wyj≈ìciowego, wybrany domy≈ìlny - .txt\n");
 			}
 
 			break;

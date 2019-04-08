@@ -1,6 +1,4 @@
-#include <stdio.h>
-#include<time.h>
-#include "Plansza_t.h"
+#include "losowaInicjacjaPlanszy.h"
 
 plansza_t inicjacjaLosowa(int wiersze, int kolumny) {
 

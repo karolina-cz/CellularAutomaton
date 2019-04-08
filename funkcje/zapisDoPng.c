@@ -1,10 +1,4 @@
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdarg.h>
-#include "plansza_t.h"
-#include <png.h>
+#include "zapisDoPng.h"
 
 int x, y;
 
@@ -42,8 +36,6 @@ void doPng(plansza_t *p, char* nazwa)
                   // x, y, row[x]);
         }
     }
-
-
 
     /* write_png_file*/
 

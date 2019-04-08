@@ -2,11 +2,7 @@
 fukncji zapisujacej do txt i png w module z main, w dodatku przy zapisie do png potrzebne
 jest zainstalownie dodatkowej biblioteka libpng */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "plansza_t.h"
-#include "flagi_t.h"
-#include<string.h>
+#include "przeprowadzGreWZycie.h"
 
 void zapisz(flagi_t, plansza_t,int,void(*doTxt)(plansza_t,char*),void(*doPng)(plansza_t*, char*));
 
@@ -58,7 +54,6 @@ void przeprowadzGreWZycie(plansza_t poprzednia, flagi_t cechy, void(*doTxt)(plan
                 sasiad_dol=0;
 
 
-
             if((i+1<lk*lw) && ((i+1)%lk != 0) ) //nie wyszlo poza zakres planszy na prawo
                 sasiad_prawo=poprzednia.tablica[i+1];
             else //wyszlo poza zakres planszy na prawo
@@ -73,8 +68,6 @@ void przeprowadzGreWZycie(plansza_t poprzednia, flagi_t cechy, void(*doTxt)(plan
                 sasiad_lewo=0;
 
 
-
-
             if(i-lk-1 >= 0 && ((i-lk)%lk != 0)) //nie wyszlo poza zakres planszy u gory na lewo
                 sasiad_gl=poprzednia.tablica[i-lk-1];
             else //wyszlo poza zakres planszy u gory na lewo
@@ -86,7 +79,6 @@ void przeprowadzGreWZycie(plansza_t poprzednia, flagi_t cechy, void(*doTxt)(plan
             else //wyszlo poza zakres planszy u gory na prawo
 
                 sasiad_gp=0;
-
 
 
             if((i+lk-1 < lk*lw) && ((i+lk)%lk != 0)) //nie wyszlo poza zakres planszy na dole po lewo
@@ -126,10 +118,6 @@ void przeprowadzGreWZycie(plansza_t poprzednia, flagi_t cechy, void(*doTxt)(plan
     free(nowa.tablica);
 }
 
-
-
-
-
 void zapisz(flagi_t cechy, plansza_t nowa,int j,void(*doTxt)(plansza_t,char*),void(*doPng)(plansza_t*, char*))
 {
     char numerN[3];
@@ -140,14 +128,14 @@ void zapisz(flagi_t cechy, plansza_t nowa,int j,void(*doTxt)(plansza_t,char*),vo
     strncpy(nazwaG,cechy.wyjsciowyG,strlen(cechy.wyjsciowyG)+1);
     char txt[4]=".txt";
     char png[4]=".png";
-    if(cechy.formatZapisu==0 || cechy.formatZapisu==2)  //zapis do pliku tekstowego
+    if(cechy.formatZapisu == TXT || cechy.formatZapisu == OBA )  //zapis do pliku tekstowego
     {
         strncat (nazwaT, numerN, sizeof(char)*3);
         strncat (nazwaT, txt, sizeof(char)*4);
         doTxt(nowa,nazwaT);
         strncpy(nazwaT,cechy.wyjsciowyT,strlen(cechy.wyjsciowyT)+1);
     }
-    if(cechy.formatZapisu==1 || cechy.formatZapisu==2)
+    if(cechy.formatZapisu == PNG || cechy.formatZapisu == OBA )
     {
         strncat (nazwaG, numerN, sizeof(char)*3);
         strncat (nazwaG, png, sizeof(char)*4);

@@ -1,5 +1,5 @@
-#include<stdio.h>
-#include "plansza_t.h"
+#include "zapisDoTxt.h"
+
 void doTxt( plansza_t plansza, char * nazwa){
     FILE * plik=fopen(nazwa, "w");
     int w=plansza.wiersze;

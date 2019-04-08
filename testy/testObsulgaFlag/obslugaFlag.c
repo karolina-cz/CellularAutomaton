@@ -10,7 +10,7 @@ flagi_t* zapiszFlagi(int argc, char** argv) {
 	int c;
 	char ch;
 	int read;
-	char* defualtOutput = "result/";
+	char* defualtOutput = "wyniki";
 
 
 	flagi_t* flagi = malloc(sizeof(*flagi));

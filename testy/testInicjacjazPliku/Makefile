@@ -1,0 +1,1 @@
+all: inicjacjaPlanszyZPliku.* losowaInicjacjaPlanszy.* Plansza_t.h inicjacjaZpliku_test.c -o zPliku

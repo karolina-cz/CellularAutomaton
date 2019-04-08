@@ -1,8 +1,11 @@
 #ifndef przeprowadz_Gre_W_Zycie
 #define przeprowadz_Gre_W_Zycie
 
-#include"plansza_t.h"
-#include"flagi_t.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include "plansza_t.h"
+#include "flagi_t.h"
+#include<string.h>
 
 void doPng(plansza_t *, char* );
 void doTxt( plansza_t , char *);

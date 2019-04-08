@@ -1,5 +1,5 @@
-#ifndef ZAPIS_DO_PNG
-#define ZAPIS_DO_PNG
+#ifndef ZAPIS_DO_png
+#define ZAPIS_DO_png
 
 #include<stdio.h>
 #include "plansza_t.h"

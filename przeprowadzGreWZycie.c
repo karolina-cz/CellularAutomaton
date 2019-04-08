@@ -9,7 +9,8 @@ void zapisz(flagi_t, plansza_t,int,void(*doTxt)(plansza_t,char*),void(*doPng)(pl
 
 void przeprowadzGreWZycie(plansza_t poprzednia, flagi_t cechy, void(*doTxt)(plansza_t,char*),void(*doPng)(plansza_t*, char*))
 {
-    wyswietlPlansze(poprzednia);
+	if (cechy.wyswietl == 1)
+		wyswietlPlansze(poprzednia);
     int ileGen=cechy.ileGeneracji;
     if(ileGen>100) //sprawdzam czy liczba generacji nie przekroczyla dozwolonej wartosci, jezeli tak, zmieniam na najwieksza mozliwa
     {
@@ -108,8 +109,8 @@ void przeprowadzGreWZycie(plansza_t poprzednia, flagi_t cechy, void(*doTxt)(plan
             zywi_sasiedzi=0;
 
         }
-
-        wyswietlPlansze(nowa);
+		if (cechy.wyswietl == 1)
+			wyswietlPlansze(nowa);
        if(doPng!=NULL && doTxt!=NULL)
             zapisz(cechy,nowa,j,doTxt,doPng);
         poprzednia=nowa;
@@ -128,7 +129,7 @@ void zapisz(flagi_t cechy, plansza_t nowa,int j,void(*doTxt)(plansza_t,char*),vo
     strncpy(nazwaG,cechy.wyjsciowyG,strlen(cechy.wyjsciowyG)+1);
     char txt[4]=".txt";
     char png[4]=".png";
-    if(cechy.formatZapisu == TXT || cechy.formatZapisu == OBA )  //zapis do pliku tekstowego
+         if(cechy.formatZapisu == TXT || cechy.formatZapisu == OBA )  //zapis do pliku tekstowego
     {
         strncat (nazwaT, numerN, sizeof(char)*3);
         strncat (nazwaT, txt, sizeof(char)*4);

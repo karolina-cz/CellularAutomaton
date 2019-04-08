@@ -1,6 +1,6 @@
 #include "flagi_t.h"
 
-void zwalnianiePamieci(flagi_t* c) {
+void wyczysc(flagi_t* c) {
 	free(c->wyjsciowyT);
 	free(c->wyjsciowyG);
 	free(c);
@@ -17,7 +17,7 @@ flagi_t* zapiszFlagi(int argc, char** argv) {
 	flagi_t* flagi = malloc(sizeof(*flagi));
 
 	flagi->pomoc = 0;
-	flagi->plikWejsciowy = "";
+	flagi->plikWejsciowy = "#";
 	flagi->wyjsciowyT = malloc(strlen(katalogDomyslny) + 1);
 	flagi->wyjsciowyG = malloc(strlen(katalogDomyslny) + 1);
 	strcpy(flagi->wyjsciowyT, katalogDomyslny);
@@ -26,9 +26,10 @@ flagi_t* zapiszFlagi(int argc, char** argv) {
 	flagi->ileGeneracji = 10;
 	flagi->kolumny = 10;
 	flagi->wiersze = 10;
+	flagi->wyswietl = 0;
 
 	if (argc == 1) {
-		printf("1. Aby wyswietlic pomoc, wywolaj program z flaga -h lub --pomoc \n");
+		printf("Aby wyswietlic pomoc, wywolaj program z flaga -h lub --pomoc \n");
 		exit(EXIT_FAILURE);
 	}
 	while (1) {
@@ -38,13 +39,14 @@ flagi_t* zapiszFlagi(int argc, char** argv) {
 				{"plikWejsciowy",  required_argument, 0, 'p' },
 				{"wyjsciowyT",  required_argument, 0, 't' },
 				{"wyjsciowyG",  required_argument, 0, 'g' },
+				{"wyswietl",  no_argument, 0, 'w' },
 				{"formatZapisu",  required_argument, 0, 'f' },
 				{"generacje",  required_argument, 0, 'n' },
 				{"rozmiar",  required_argument, 0, 'r' }
 
 		};
 
-		c = getopt_long(argc, argv, "hp:t:g:f:n:w:k: ", long_options, &option_index);
+		c = getopt_long(argc, argv, "hp:t:g:w:f:n:wk:", long_options, &option_index);
 
 		if (c == -1)
 			break;
@@ -55,6 +57,10 @@ flagi_t* zapiszFlagi(int argc, char** argv) {
 
 		case 'h':
 			flagi->pomoc = 1;
+			printf("Aby podac plik wejsciowy do wygenerowania planszy:\n--plikWejsciowy [nazwa_pliku]\n");
+			printf("Aby podac plik wejsciowy do wygenerowania planszy:\n--plikWejsciowy [nazwa_pliku]\n");
+			printf("Aby podac plik wejsciowy do wygenerowania planszy:\n--plikWejsciowy [nazwa_pliku]\n");
+			printf("Aby podac plik wejsciowy do wygenerowania planszy:\n--plikWejsciowy [nazwa_pliku]\n");
 			break;
 
 		case 'p':
@@ -97,6 +103,10 @@ flagi_t* zapiszFlagi(int argc, char** argv) {
 			}
 			break;
 
+		case 'w':
+			flagi->wyswietl = 1;
+			break;
+
 		case 'f':
 			if (strcmp(optarg, "txt") == 0) flagi->formatZapisu = TXT;
 			else if (strcmp(optarg, "png") == 0) flagi->formatZapisu = PNG;
@@ -126,13 +136,13 @@ flagi_t* zapiszFlagi(int argc, char** argv) {
 			}
 			break;
 		default:
-			printf("2. Aby wyswietlic pomoc wywolaj program z flaga -h lub --pomoc\n");
+			printf("Aby wyswietlic pomoc wywolaj program z flaga -h lub --pomoc\n");
 			exit(1);
 		}
 	}
 
 	if (optind < argc) {
-		printf("3. Aby wyswietlic pomoc wywolaj program z flaga -h lub --pomoc \n");
+		printf("Aby wyswietlic pomoc wywolaj program z flaga -h lub --pomoc \n");
 		exit(EXIT_FAILURE);
 	}
 	//mkdir(flagi->wyjsciowy, 0777);

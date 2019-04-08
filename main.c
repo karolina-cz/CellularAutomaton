@@ -9,11 +9,19 @@
 
 int main(int argc, char** argv) {
 
-	flagi_t *f = zapiszFlagi(argc, argv);
-	plansza_t planszaGry = inicjacjaLosowa( f->wiersze, f->kolumny);
+	plansza_t planszaGry;
+	flagi_t *flagi = zapiszFlagi(argc, argv);
 
-	przeprowadzGreWZycie(planszaGry, *f, doTxt, doPng);
-	wyswietlPlansze(planszaGry);
+	if ( strcmp(flagi->plikWejsciowy, "#") != 0) {
+		planszaGry = wczytajZPliku(flagi->plikWejsciowy);	
+	}else {
+		planszaGry = inicjacjaLosowa(flagi->wiersze, flagi->kolumny);
+	}
+	
+	przeprowadzGreWZycie(planszaGry, *flagi, doTxt, doPng);
 
+	wyczysc(flagi);
+	free(planszaGry.tablica);
+	
 	return 0;
 }

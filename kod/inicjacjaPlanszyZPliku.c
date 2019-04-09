@@ -43,7 +43,6 @@ void policz(const char* plik, plansza_t* x){
     while ( ((znak = getc(in)) != EOF) && (znak != '\n') && (znak != 13))
         k++;
     
-	printf("Liczba kolumn: %d\n", k);
     x->kolumny=k;
 
     w=1; //bo przeczytano juz 1 linie
@@ -51,7 +50,6 @@ void policz(const char* plik, plansza_t* x){
         if(znak == '\n')
             w++;
     
-	printf("Liczba wierszy: %d \n", w); 
     x->wiersze=w;
 
 	fclose(in);

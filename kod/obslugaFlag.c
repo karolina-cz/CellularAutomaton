@@ -41,7 +41,7 @@ flagi_t* zapiszFlagi(int argc, char** argv) {
 				{"wyjsciowyT",  required_argument, 0, 't' },
 				{"wyjsciowyG",  required_argument, 0, 'g' },
 				{"wyswietl",  no_argument, 0, 'w' },
-				{"formatZapisu",  required_argument, 0, 'f' },
+				{"zapisz",  required_argument, 0, 'f' },
 				{"generacje",  required_argument, 0, 'n' },
 				{"rozmiar",  required_argument, 0, 'r' }
 
@@ -58,10 +58,12 @@ flagi_t* zapiszFlagi(int argc, char** argv) {
 
 		case 'h':
 			flagi->pomoc = 1;
-			printf("Aby podac plik wejsciowy do wygenerowania planszy:\n--plikWejsciowy [nazwa_pliku]\n");
-			printf("Aby podac plik wejsciowy do wygenerowania planszy:\n--plikWejsciowy [nazwa_pliku]\n");
-			printf("Aby podac plik wejsciowy do wygenerowania planszy:\n--plikWejsciowy [nazwa_pliku]\n");
-			printf("Aby podac plik wejsciowy do wygenerowania planszy:\n--plikWejsciowy [nazwa_pliku]\n");
+			printf("Aby podac plik wejsciowy do wygenerowania planszy, wpisz:\n\t --plikWejsciowy [nazwa_pliku]\n");
+			printf("Aby podac rozmiar planszy wygenerowanej losowo, wpisz:\n\t--rozmiar [liczba_kolumn]x[liczba_wierszy]\n");
+			printf("Aby podac nazwe pliku wyjsciowego, gdzi emaj¹ zostac wygenerowane plansze, wpisz:\n\t--wyjsciowyT [nazwa_pliku] (dla zapisu w formacie tekstowym)\n\t--wyjsciowyG  [nazwa_pliku] (dla zapisu w formacie tekstowym)\n");
+			printf("Aby podac liczbê generacji kolejnych planszy, wpisz:\n\t--generacje [liczba_generacji]\n");
+			printf("Aby wybrac format zapisu, wpisz:\n\t--zapisz txt (aby zapisac w formacie tekstowym)\n\t--zapisz png (aby zapisac w formacie graficznym)\n\t--zapisz oba (aby zapisac w obu formatach)\n");
+			printf("Aby wyswietlic wygenerowane plansze, wpisz:\n--wyswietl\n");
 			break;
 
 		case 'p':

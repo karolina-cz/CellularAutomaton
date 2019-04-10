@@ -60,8 +60,8 @@ flagi_t* zapiszFlagi(int argc, char** argv) {
 			flagi->pomoc = 1;
 			printf("Aby podac plik wejsciowy do wygenerowania planszy, wpisz:\n\t --plikWejsciowy [nazwa_pliku]\n");
 			printf("Aby podac rozmiar planszy wygenerowanej losowo, wpisz:\n\t--rozmiar [liczba_kolumn]x[liczba_wierszy]\n");
-			printf("Aby podac nazwe pliku wyjsciowego, gdzi emaj¹ zostac wygenerowane plansze, wpisz:\n\t--wyjsciowyT [nazwa_pliku] (dla zapisu w formacie tekstowym)\n\t--wyjsciowyG  [nazwa_pliku] (dla zapisu w formacie tekstowym)\n");
-			printf("Aby podac liczbê generacji kolejnych planszy, wpisz:\n\t--generacje [liczba_generacji]\n");
+			printf("Aby podac nazwe pliku wyjsciowego, gdzie maja zostac wygenerowane plansze, wpisz:\n\t--wyjsciowyT [nazwa_pliku] (dla zapisu w formacie tekstowym)\n\t--wyjsciowyG  [nazwa_pliku] (dla zapisu w formacie tekstowym)\n");
+			printf("Aby podac liczbe generacji kolejnych planszy, wpisz:\n\t--generacje [liczba_generacji]\n");
 			printf("Aby wybrac format zapisu, wpisz:\n\t--zapisz txt (aby zapisac w formacie tekstowym)\n\t--zapisz png (aby zapisac w formacie graficznym)\n\t--zapisz oba (aby zapisac w obu formatach)\n");
 			printf("Aby wyswietlic wygenerowane plansze, wpisz:\n\t--wyswietl\n");
 			break;
@@ -73,7 +73,6 @@ flagi_t* zapiszFlagi(int argc, char** argv) {
 		case 't':
 			if (optarg[strlen(optarg) - 1] != '/') {
 				if ((flagi->wyjsciowyT = realloc(flagi->wyjsciowyT, strlen(optarg) + 2)) == NULL) {
-					printf("Blad");
 					exit(EXIT_FAILURE);
 				}
 				strcpy(flagi->wyjsciowyT, optarg);
@@ -81,7 +80,6 @@ flagi_t* zapiszFlagi(int argc, char** argv) {
 			}
 			else {
 				if ((flagi->wyjsciowyT = realloc(flagi->wyjsciowyT, strlen(optarg) + 1)) == NULL) {
-					printf("Blad");
 					exit(EXIT_FAILURE);
 				}
 				strcpy(flagi->wyjsciowyT, optarg);
@@ -90,8 +88,7 @@ flagi_t* zapiszFlagi(int argc, char** argv) {
 
 		case 'g':
 			if (optarg[strlen(optarg) - 1] != '/') {
-				if ((flagi->wyjsciowyG = realloc(flagi->wyjsciowyG, strlen(optarg) + 2)) == NULL) {
-					printf("Blad");
+				if ((flagi->wyjsciowyG = realloc(flagi->wyjsciowyG, strlen(optarg) + 2)) == NULL){
 					exit(EXIT_FAILURE);
 				}
 				strcpy(flagi->wyjsciowyG, optarg);
@@ -99,7 +96,6 @@ flagi_t* zapiszFlagi(int argc, char** argv) {
 			}
 			else {
 				if ((flagi->wyjsciowyG = realloc(flagi->wyjsciowyG, strlen(optarg) + 1)) == NULL) {
-					printf("Blad");
 					exit(EXIT_FAILURE);
 				}
 				strcpy(flagi->wyjsciowyG, optarg);

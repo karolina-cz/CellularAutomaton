@@ -9,8 +9,9 @@
 #include <sys/types.h>
 
 typedef enum {
+	TXT = 0,
 	PNG = 1,
-	TXT = 0
+	OBA = 2
 }typ;
 
 typedef struct {
@@ -18,12 +19,14 @@ typedef struct {
 	int kolumny;
 	int ileGeneracji;
 	char* plikWejsciowy;
-	char* wyjsciowy;
+	char* wyjsciowyT;
+	char* wyjsciowyG;
 	typ formatZapisu;
+	int wyswietl;
 	int pomoc;
 }flagi_t;
 
-void zwalnianiePamieci(flagi_t* flagi);
+void wyczysc(flagi_t* flagi);
 flagi_t* zapiszFlagi( int argc, char ** argv);
 char* przeksztalcFormatZapisu(typ formatZapisu);
 #endif

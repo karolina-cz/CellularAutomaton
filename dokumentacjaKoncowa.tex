@@ -38,19 +38,32 @@
 \tableofcontents
 \newpage	
 \section{Ostateczny projekt modułów}
-Podczas pisania programu zostały przeprowadzone pewne modyfikacje zaplanowanych w początkowej fazie modułów.
-Zmianom uległy m.in. niektóre nazwy plików. 
-Moduł generator został zastąpiony nazwą przeprowadzGreWZycie, podobnie funkcja generator znajdująca się w nim, ponieważ jest ona bardziej intuicyjna i lepiej oddaje jego działanie, czyli tworzenie wszystkich generacji planszy oraz zapisywanie ich do plików tekstowych lub graficznych. W module tym została dodana funkcja zapisz, która zajmuje się zapisem do .png oraz .txt. Ma to na celu podział całości na mniejsze funkcje, dzięki czemu kod jest czytelniejszy. Nazwa funkcji doPlikuTxt została zastąpiona przez doTxt. Zmieniona została także kolejność argumentów wywołania funkcji doTxt, tak, aby była analogiczna do kolejności argumentów w doPng. Struktura Plansza t została zastąpiona nazwą plansza t, aby ujednolicić schemat nazw modułów, tak aby wszystkie zaczynały się z małej litery. Do plansza t została dodana funkcja wyświetlająca planszę. 
-	 
-Istotną zmianą w module generowania planszy jest rezygnacja z możliwości zawijania kolumn i wierszy. 
-Zostały usunięte flagi „łączenie” a dodane „wyświetlanie” umożliwiająca wyświetlenie plansz oraz „pomoc” która wyświetla wskazówki dotyczące wywołania programu. Ponadto zmienione zostały nazwy flag „ileGeneracji” na „generacje” oraz „formatZapisu” na „zapisz”.
+
+ 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=13cm]{Main.png}
+\end{figure}
 
 \section{Opis modyfikacji projektu}
+Podczas pisania programu zostały przeprowadzone pewne modyfikacje zaplanowanych w początkowej fazie modułów. Zmianom uległy m.in. niektóre nazwy plików. 
+
+\subsection{Moduł przeprowadzGreWZycie}
+Moduł generator został zastąpiony nazwą przeprowadzGreWZycie, podobnie funkcja generator znajdująca się w nim, ponieważ jest ona bardziej intuicyjna i lepiej oddaje jego działanie, czyli tworzenie wszystkich generacji planszy oraz zapisywanie ich do plików tekstowych lub graficznych. W module tym została dodana funkcja zapisz, która zajmuje się zapisem do .png oraz .txt. Ma to na celu podział całości na mniejsze funkcje, dzięki czemu kod jest czytelniejszy. 
+\subsection{Moduł zapisDoTxt}
+Nazwa funkcji doPlikuTxt została zastąpiona przez doTxt. Zmieniona została także kolejność argumentów wywołania funkcji doTxt, tak, aby była analogiczna do kolejności argumentów w doPng. 
+
+\subsection{Moduł obslugaFlag}
+Istotną zmianą w module dotyczącym flag jest rezygnacja z możliwości wyboru opcji zawijania kolumn i wierszy. 
+Zostały usunięte flagi „łączenie” a dodane „wyświetlanie” umożliwiająca wyświetlenie plansz oraz „pomoc” która wyświetla wskazówki dotyczące wywołania programu. Ponadto zmienione zostały nazwy flag „ileGeneracji” na „generacje” oraz „formatZapisu” na „zapisz”.
+
+\subsection{Struktura plansza t}
+Struktura Plansza t została zastąpiona nazwą plansza t, aby ujednolicić schemat nazw modułów, tak aby wszystkie zaczynały się z małej litery. Do plansza t została dodana funkcja wyświetlająca planszę. 
 
 \section{Prezentacja działania}
 
-\section{Podsumowanie testów modułów}
 
+\section{Podsumowanie testów modułów}
 \subsection{Test modułu zapisDoPng}
 Przeprowadzony test zakończył się pomyślnie. \\
 Plansza początkowa:\\

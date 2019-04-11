@@ -11,8 +11,7 @@ flagi_t* zapiszFlagi(int argc, char** argv) {
 	int c;
 	char ch;
 	int read;
-	char* katalogDomyslny = "wyniki/";
-	char*domyslnaNazwa = "gen";
+	char* domyslnaNazwa = "gen";
 
 
 	flagi_t* flagi = malloc(sizeof(*flagi));
@@ -41,13 +40,13 @@ flagi_t* zapiszFlagi(int argc, char** argv) {
 				{"wyjsciowyT",  required_argument, 0, 't' },
 				{"wyjsciowyG",  required_argument, 0, 'g' },
 				{"wyswietl",  no_argument, 0, 'w' },
-				{"zapisz",  required_argument, 0, 'f' },
+				{"zapisz",  required_argument, 0, 'z' },
 				{"generacje",  required_argument, 0, 'n' },
 				{"rozmiar",  required_argument, 0, 'r' }
 
 		};
 
-		c = getopt_long(argc, argv, "hp:t:g:w:f:n:wk:", long_options, &option_index);
+		c = getopt_long(argc, argv, "hp:t:g:wz:n:r:", long_options, &option_index);
 
 		if (c == -1)
 			break;
@@ -60,8 +59,8 @@ flagi_t* zapiszFlagi(int argc, char** argv) {
 			flagi->pomoc = 1;
 			printf("Aby podac plik wejsciowy do wygenerowania planszy, wpisz:\n\t --plikWejsciowy [nazwa_pliku]\n");
 			printf("Aby podac rozmiar planszy wygenerowanej losowo, wpisz:\n\t--rozmiar [liczba_kolumn]x[liczba_wierszy]\n");
-			printf("Aby podac nazwe pliku wyjsciowego, gdzi emaj¹ zostac wygenerowane plansze, wpisz:\n\t--wyjsciowyT [nazwa_pliku] (dla zapisu w formacie tekstowym)\n\t--wyjsciowyG  [nazwa_pliku] (dla zapisu w formacie tekstowym)\n");
-			printf("Aby podac liczbê generacji kolejnych planszy, wpisz:\n\t--generacje [liczba_generacji]\n");
+			printf("Aby podac nazwe pliku wyjsciowego, gdzie maja zostac wygenerowane plansze, wpisz:\n\t--wyjsciowyT [nazwa_pliku] (dla zapisu w formacie tekstowym)\n\t--wyjsciowyG  [nazwa_pliku] (dla zapisu w formacie tekstowym)\n");
+			printf("Aby podac liczbe generacji kolejnych planszy, wpisz:\n\t--generacje [liczba_generacji]\n");
 			printf("Aby wybrac format zapisu, wpisz:\n\t--zapisz txt (aby zapisac w formacie tekstowym)\n\t--zapisz png (aby zapisac w formacie graficznym)\n\t--zapisz oba (aby zapisac w obu formatach)\n");
 			printf("Aby wyswietlic wygenerowane plansze, wpisz:\n\t--wyswietl\n");
 			break;
@@ -71,46 +70,22 @@ flagi_t* zapiszFlagi(int argc, char** argv) {
 			break;
 
 		case 't':
-			if (optarg[strlen(optarg) - 1] != '/') {
-				if ((flagi->wyjsciowyT = realloc(flagi->wyjsciowyT, strlen(optarg) + 2)) == NULL) {
-					printf("Blad");
-					exit(EXIT_FAILURE);
-				}
-				strcpy(flagi->wyjsciowyT, optarg);
-				strcat(flagi->wyjsciowyT, "/");
-			}
-			else {
-				if ((flagi->wyjsciowyT = realloc(flagi->wyjsciowyT, strlen(optarg) + 1)) == NULL) {
-					printf("Blad");
-					exit(EXIT_FAILURE);
-				}
-				strcpy(flagi->wyjsciowyT, optarg);
-			}
+			flagi->wyjsciowyT = realloc(flagi->wyjsciowyT, strlen(optarg));
+			strcpy(flagi->wyjsciowyT, optarg);
 			break;
 
 		case 'g':
-			if (optarg[strlen(optarg) - 1] != '/') {
-				if ((flagi->wyjsciowyG = realloc(flagi->wyjsciowyG, strlen(optarg) + 2)) == NULL) {
-					printf("Blad");
-					exit(EXIT_FAILURE);
-				}
-				strcpy(flagi->wyjsciowyG, optarg);
-				strcat(flagi->wyjsciowyG, "/");
-			}
-			else {
-				if ((flagi->wyjsciowyG = realloc(flagi->wyjsciowyG, strlen(optarg) + 1)) == NULL) {
-					printf("Blad");
-					exit(EXIT_FAILURE);
-				}
-				strcpy(flagi->wyjsciowyG, optarg);
-			}
+
+			flagi->wyjsciowyG = realloc(flagi->wyjsciowyG, strlen(optarg));
+			strcpy(flagi->wyjsciowyG, optarg);
+			
 			break;
 
 		case 'w':
 			flagi->wyswietl = 1;
 			break;
 
-		case 'f':
+		case 'z':
 			if (strcmp(optarg, "txt") == 0) flagi->formatZapisu = TXT;
 			else if (strcmp(optarg, "png") == 0) flagi->formatZapisu = PNG;
 			else if (strcmp(optarg, "oba") == 0) flagi->formatZapisu = OBA;
@@ -148,7 +123,6 @@ flagi_t* zapiszFlagi(int argc, char** argv) {
 		printf("Aby wyswietlic pomoc wywolaj program z flaga -h lub --pomoc \n");
 		exit(EXIT_FAILURE);
 	}
-	mkdir(katalogDomyslny, 0777);
 
 	return flagi;
 }

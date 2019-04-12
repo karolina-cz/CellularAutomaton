@@ -17,7 +17,7 @@ flagi_t* zapiszFlagi(int argc, char** argv) {
 	flagi_t* flagi = malloc(sizeof(*flagi));
 
 	flagi->pomoc = 0;
-	flagi->plikWejsciowy = "#";
+	flagi->plikWejsciowy = "";
 	flagi->wyjsciowyT = malloc(strlen(domyslnaNazwa) + 1);
 	flagi->wyjsciowyG = malloc(strlen(domyslnaNazwa) + 1);
 	strcpy(flagi->wyjsciowyT, domyslnaNazwa);
@@ -57,12 +57,12 @@ flagi_t* zapiszFlagi(int argc, char** argv) {
 
 		case 'h':
 			flagi->pomoc = 1;
-			printf("Aby podac plik wejsciowy do wygenerowania planszy, wpisz:\n\t --plikWejsciowy [nazwa_pliku]\n");
-			printf("Aby podac rozmiar planszy wygenerowanej losowo, wpisz:\n\t--rozmiar [liczba_kolumn]x[liczba_wierszy]\n");
-			printf("Aby podac nazwe pliku wyjsciowego, gdzie maja zostac wygenerowane plansze, wpisz:\n\t--wyjsciowyT [nazwa_pliku] (dla zapisu w formacie tekstowym)\n\t--wyjsciowyG  [nazwa_pliku] (dla zapisu w formacie tekstowym)\n");
-			printf("Aby podac liczbe generacji kolejnych planszy, wpisz:\n\t--generacje [liczba_generacji]\n");
-			printf("Aby wybrac format zapisu, wpisz:\n\t--zapisz txt (aby zapisac w formacie tekstowym)\n\t--zapisz png (aby zapisac w formacie graficznym)\n\t--zapisz oba (aby zapisac w obu formatach)\n");
-			printf("Aby wyswietlic wygenerowane plansze, wpisz:\n\t--wyswietl\n");
+			printf("Aby podac plik wejsciowy do wygenerowania planszy, wpisz:\n\t --plikWejsciowy [nazwa_pliku]\n\t lub\n\t -p [nazwa_pliku]\n");
+			printf("Aby podac rozmiar planszy wygenerowanej losowo, wpisz:\n\t--rozmiar [liczba_kolumn]x[liczba_wierszy]\n\t-r [liczba_kolumn]x[liczba_wierszy]\n");
+			printf("Aby podac nazwe pliku wyjsciowego, gdzie maja zostac wygenerowane plansze, wpisz:\n\tdla zapisu w formacie tekstowym:\n\t--wyjsciowyT [nazwa_pliku] \n\t lub\n\t -t [nazwa_pliku]\n\tdla zapisu w formacie graficznym:\n\t--wyjsciowyG  [nazwa_pliku]\n\t lub\n\t -g [nazwa_pliku]\n");
+			printf("Aby podac liczbe generacji kolejnych planszy, wpisz:\n\t--generacje [liczba_generacji]\n\tlub\n\t-n [liczba_generacji]\n");
+			printf("Aby wybrac format zapisu, wpisz:\n\t--zapisz txt (aby zapisac w formacie tekstowym)\n\t--zapisz png (aby zapisac w formacie graficznym)\n\t--zapisz oba (aby zapisac w obu formatach)\n\tlub\n\t-z txt (aby zapisac w formacie tekstowym)\n\t-z png (aby zapisac w formacie graficznym)\n\t-z oba (aby zapisac w obu formatach)");
+			printf("Aby wyswietlic wygenerowane plansze, wpisz:\n\t--wyswietl\n\tlub\n\t-w\n");
 			break;
 
 		case 'p':
@@ -106,11 +106,15 @@ flagi_t* zapiszFlagi(int argc, char** argv) {
 			break;
 
 		case 'r':
-			read = sscanf(optarg, "%d%c%d", &(flagi->kolumny), &ch, &(flagi->wiersze));
-			if (read != 3 || ch != 'x') {
-				printf("Podano niepoprawny rozmiar\nUstawiono domyslnie - 10x10");
-				flagi->kolumny = 10;
-				flagi->wiersze = 10;
+			if( flagi->plikWejsciowy != ""){
+				printf("Podano juz plik wejsciowy, rozmiar nie zostanie uwzgledniony. Plansza wygenerowana na podstawie danych zawartych w pliku.\n");
+			}else{
+				read = sscanf(optarg, "%d%c%d", &(flagi->kolumny), &ch, &(flagi->wiersze));
+				if (read != 3 || ch != 'x') {
+					printf("Podano niepoprawny rozmiar\nUstawiono domyslnie - 10x10");
+					flagi->kolumny = 10;
+					flagi->wiersze = 10;
+				}
 			}
 			break;
 		default:

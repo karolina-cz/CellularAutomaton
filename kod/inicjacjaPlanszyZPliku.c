@@ -1,5 +1,4 @@
 #include "inicjacjaPlanszyZPliku.h"
-#pragma warning(disable : 4996)
 
 plansza_t wczytajZPliku(const char* plik){
 

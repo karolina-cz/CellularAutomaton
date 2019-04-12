@@ -11,7 +11,6 @@ int main(int argc, char** argv) {
 
 	plansza_t planszaGry;
 	flagi_t *flagi = zapiszFlagi(argc, argv);
-	printf("test");
 	if ( strcmp(flagi->plikWejsciowy, "#") != 0) {
 		planszaGry = wczytajZPliku(flagi->plikWejsciowy);	
 	}else {
